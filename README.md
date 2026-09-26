@@ -1,163 +1,110 @@
 # DecisIQ — Enterprise AI Decision Intelligence Platform
 
-DecisIQ is a full-stack analytics and decision-support platform that I built to explore how data analytics, machine learning, and AI can be combined to solve common business problems.
+DecisIQ is a decision intelligence platform I built to help businesses understand their performance using data analytics, machine learning, and AI-assisted analysis.
 
-The main idea is simple: instead of only showing what happened in the business, the platform tries to help answer why it happened, what might happen next, and what actions could be considered.
+The main idea is to connect business data with analytics and predictive models so that users can understand what is happening, investigate the reasons behind it, and explore possible actions.
 
 **Live Demo:** https://decisiq-enterprise-ai-decision.onrender.com/
 
-## What the Project Does
+## What It Includes
 
-DecisIQ brings several business analytics features together in one application:
+* Executive dashboard for monitoring business performance
+* Ask Your Data AI for natural-language analysis
+* Revenue and gross-margin tracking
+* 30/60/90-day revenue forecasting
+* Customer 360 and churn analysis
+* RFM-based customer segmentation
+* Anomaly detection
+* Marketing attribution and campaign analysis
+* What-If scenario simulation
+* Regional and category performance analysis
+* Power BI export
+* Data workspace for business data
 
-* Executive dashboard for tracking important business KPIs
-* Natural-language data analysis through the "Ask Your Data" feature
-* Root-cause analysis across customers, products, regions, and pricing
-* Customer 360 with RFM-based segmentation
-* Customer churn prediction using machine learning
-* 30, 60, and 90-day revenue forecasting
-* Anomaly detection for unusual business activity
-* Marketing campaign and ROAS analysis
-* What-if simulations for pricing, retention, marketing budgets, and costs
+## Dashboard
 
-## How It Works
+The main dashboard provides an overview of revenue, customers, orders, churn risk, forecasts, category profitability, and regional performance.
 
-```text
-Raw Business Data
-        |
-        v
-Star-Schema Data Warehouse
-        |
-        v
-SQL Analytics + Machine Learning
-        |
-        v
-AI Decision Layer
-        |
-        +-------------------+
-        |                   |
-        v                   v
-What-If Simulator      Executive Dashboard
-```
+The current demo includes:
 
-The data is first organized into a star-schema database. SQL is then used for business analysis and aggregations, while machine learning models are used for forecasting, churn prediction, segmentation, and anomaly detection.
+* ₹7.87 Cr monthly net revenue
+* 3,599 active customers
+* ₹31,221 average order value
+* 20.4% average churn risk
+* ₹8.82 Cr next-month revenue forecast
+* 24-month revenue and gross-margin trends
 
-The results are exposed through the backend API and displayed through the React frontend.
+These figures are part of the project's demo dataset and are intended to demonstrate how the platform works.
 
-## Main Features
+## Decision Intelligence
 
-### Executive Dashboard
-
-The dashboard provides an overview of business performance through metrics such as:
-
-* Revenue
-* Active customers
-* Average Order Value
-* Gross margin
-* Customer churn risk
-* Regional performance
-* Category performance
-
-### Ask Your Data
-
-The Ask Your Data feature allows users to ask questions about business performance in natural language.
-
-For example:
-
-> Why did revenue decrease this month?
-
-The system can break the problem down by different dimensions such as products, customers, regions, pricing, and marketing channels.
-
-The analysis follows a simple structure:
-
-1. What happened?
-2. Why did it happen?
-3. What could happen next?
-4. What actions could be considered?
-
-### Customer 360 and Churn Prediction
-
-Customer data is analyzed using RFM (Recency, Frequency, Monetary) analysis to create customer segments such as Champions, Loyal, At-Risk, and Lost.
-
-A Random Forest model is also used to estimate customer churn risk using behavioral features.
-
-### Revenue Forecasting
-
-The forecasting module generates 30, 60, and 90-day revenue projections.
-
-The model uses historical data along with features such as:
-
-* Lag values
-* Moving averages
-* Day-of-week patterns
-* Monthly patterns
-* Cyclical time features
-
-### Anomaly Detection
-
-The platform uses Isolation Forest and statistical methods to identify unusual changes in business metrics.
-
-Examples include sudden revenue drops, changes in return rates, and unusual regional or funnel performance.
-
-### What-If Simulator
-
-The simulator allows users to experiment with different business scenarios before making a decision.
-
-Some examples include:
-
-* Changing product prices
-* Estimating customer retention campaign impact
-* Moving marketing budget between channels
-* Testing changes in operating costs
-
-The simulator is intended for scenario analysis rather than treating the results as guaranteed predictions.
-
-## Data Warehouse
-
-The project uses a star-schema structure.
-
-### Dimension Tables
+DecisIQ is built around four questions:
 
 ```text
-dim_customers
-dim_products
-dim_regions
-dim_marketing_campaigns
+What happened?
+      ↓
+Why did it happen?
+      ↓
+What could happen next?
+      ↓
+What actions can be considered?
 ```
 
-### Fact Tables
-
-```text
-fact_orders
-fact_order_items
-fact_daily_business_pulse
-```
-
-This structure makes it easier to analyze business data across customers, products, regions, campaigns, and time.
+For example, the dashboard can highlight potential business issues such as high-value customer inactivity, regional performance changes, or inefficient marketing campaigns and allow the user to investigate them further using the AI analysis features.
 
 ## Machine Learning
 
-The project currently uses several machine learning and statistical techniques:
+The platform uses machine learning for different parts of the analysis, including:
 
-* Random Forest for churn prediction
-* Isolation Forest for anomaly detection
-* Ridge Regression for predictive modeling
-* RFM analysis for customer segmentation
-* Lag and rolling features for forecasting
-* StandardScaler for feature preprocessing
+* Revenue forecasting
+* Customer churn prediction
+* Customer segmentation
+* Anomaly detection
+* Predictive risk scoring
+
+The dashboard also provides confidence intervals for forecast results where applicable.
+
+## Data & Analytics
+
+The project uses a star-schema approach for organizing business data and combines SQL analytics with machine learning.
+
+The data covers areas such as:
+
+* Customers
+* Orders
+* Products
+* Regions
+* Marketing campaigns
+* Daily business performance
 
 ## Tech Stack
 
 | Area                  | Technologies                |
 | --------------------- | --------------------------- |
 | Backend               | Python, FastAPI, Uvicorn    |
+| Database              | DuckDB, SQLite              |
 | Data Analysis         | Pandas, NumPy               |
-| Database              | SQLite, DuckDB, PostgreSQL  |
 | Machine Learning      | Scikit-learn                |
 | Analytics             | SQL, CTEs, Window Functions |
 | Business Intelligence | Power BI, DAX               |
 | Frontend              | React, Vite, Tailwind CSS   |
 | Visualization         | Recharts                    |
+
+## Project Structure
+
+```text
+DecisIQ/
+├── backend/
+├── frontend/
+├── powerbi_export_pack/
+├── sql_analytics/
+├── db.py
+├── requirements.txt
+├── Dockerfile
+├── render.yaml
+├── Procfile
+└── run_platform.bat
+```
 
 ## Running Locally
 
@@ -167,25 +114,19 @@ The project currently uses several machine learning and statistical techniques:
 * Node.js 18+
 * npm
 
-### Start the Backend
+### Backend
 
 ```bash
 python backend/app.py
 ```
 
-The API will be available at:
+API:
 
 ```text
 http://127.0.0.1:8000
 ```
 
-API documentation:
-
-```text
-http://127.0.0.1:8000/docs
-```
-
-### Start the Frontend
+### Frontend
 
 ```bash
 cd frontend
@@ -193,26 +134,25 @@ npm install
 npm run dev
 ```
 
-The frontend will be available at:
+Frontend:
 
 ```text
 http://localhost:5173
 ```
 
-On Windows, the complete application can also be started using:
+On Windows, `run_platform.bat` can be used to start the platform.
 
-```text
-run_platform.bat
-```
+## Why I Built It
 
-## Why I Built This
+I built DecisIQ as a way to work on a project that combines the different parts of a real analytics application instead of building only a dashboard or only a machine learning model.
 
-I built DecisIQ to work on a project that connects different areas of data and software development instead of focusing on just one dashboard or machine learning model.
+It gave me hands-on experience with data modeling, SQL, Python, machine learning, backend APIs, React, visualization, and business intelligence.
 
-While working on it, I worked with data modeling, SQL, Python, machine learning, APIs, React, visualization, and business intelligence.
+## Deployment
 
-The overall goal was to build a single system where historical analysis, predictive models, and scenario analysis can work together to support business decisions.
+The project is currently deployed on Render.
 
-## Live Demo
-
+**Live Demo:**
 https://decisiq-enterprise-ai-decision.onrender.com/
+
+The complete frontend and backend source code are included in this repository.
